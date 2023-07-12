@@ -1,5 +1,7 @@
 package org.example.trabajo;
 
+import org.example.Validacion.UsuarioValidacion;
+
 public class Usuario {
 
     private Integer id;
@@ -11,6 +13,8 @@ public class Usuario {
     private  String correo;
 
     private Integer ubicacion;
+
+    private UsuarioValidacion Validacion = new UsuarioValidacion();
 
     public Usuario() {
     }
@@ -44,7 +48,12 @@ public class Usuario {
     }
 
     public void setNombres(String nombres) {
-        this.nombres = nombres;
+        try {
+            this.Validacion.validarNombre(nombres);
+            this.nombres = nombres;
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getCorreo() {
