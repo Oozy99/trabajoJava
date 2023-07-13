@@ -2,6 +2,8 @@ package org.example.trabajo;
 
 import org.example.Validacion.UsuarioValidacion;
 
+import java.util.concurrent.ExecutionException;
+
 public class Usuario {
 
     private Integer id;
@@ -61,7 +63,12 @@ public class Usuario {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        try {
+            this.Validacion.validarCorreo(correo);
+            this.correo=correo;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getUbicacion() {
@@ -69,6 +76,14 @@ public class Usuario {
     }
 
     public void setUbicacion(Integer ubicacion) {
-        this.ubicacion = ubicacion;
+        try {
+            this.Validacion.validarUbicacion(ubicacion);// si las validaciones se cumplen
+            this.ubicacion=ubicacion;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+
+        }
     }
-}
+
+    }
+
