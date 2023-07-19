@@ -1,5 +1,8 @@
 package org.example.trabajo;
 
+import org.example.Validacion.UsuarioValidacion;
+import org.example.Validacion.ValidacionOferta;
+
 import java.time.LocalDate;
 
 public class Oferta {
@@ -17,6 +20,8 @@ public class Oferta {
     private  Double costoPersona;
 
     private Integer idLocal;
+
+    private ValidacionOferta Validacion = new ValidacionOferta();
 
     public Oferta() {
     }
@@ -60,15 +65,31 @@ public class Oferta {
     }
 
     public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+        {
+            try {
+
+                this.Validacion.validarFechas(fechaInicio,this.fechaFin);
+                this.fechaInicio = fechaInicio;
+            } catch (Exception error) {
+                System.out.println(error.getMessage());
+
+            }
+        }
     }
+
 
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
     public void setFechaFin(LocalDate fechaFin) {
-        this.fechaFin = fechaFin;
+        try {
+            this.Validacion.validarFechas(this.fechaInicio,fechaFin);
+            this.fechaFin=fechaFin;
+
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public Double getCostoPersona() {

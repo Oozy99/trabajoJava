@@ -1,5 +1,8 @@
 package org.example.trabajo;
 
+import org.example.Validacion.LocalValidacion;
+import org.example.Validacion.UsuarioValidacion;
+
 public class Local {
 
     private Integer id;
@@ -11,6 +14,8 @@ public class Local {
     private Integer ubicacion;
 
     private  String descripcion;
+
+    private LocalValidacion Validacion= new LocalValidacion();
 
     public Local() {
     }
@@ -36,7 +41,12 @@ public class Local {
     }
 
     public void setNit(String nit) {
-        this.nit = nit;
+        try {
+            this.Validacion.validarNit(nit);
+            this.nit=nit;
+        }catch (Exception error){
+            System.out.println(error.getMessage());
+        }
     }
 
     public String getNombre() {
@@ -44,7 +54,12 @@ public class Local {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        try {
+            this.Validacion.validarNombreEmpresa(nombre);
+            this.nombre = nombre;
+        }catch (Exception error) {
+            System.out.println(error.getMessage());
+        }
     }
 
     public Integer getUbicacion() {
