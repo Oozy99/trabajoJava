@@ -1,13 +1,12 @@
 package org.example.trabajo;
 
 import org.example.Validacion.LocalValidacion;
-import org.example.Validacion.UsuarioValidacion;
 
 public class Local {
 
     private Integer id;
 
-    private  String nit;
+    private Integer nit;
 
     private  String nombre;
 
@@ -20,7 +19,7 @@ public class Local {
     public Local() {
     }
 
-    public Local(Integer id, String nit, String nombre, Integer ubicacion, String descripcion) {
+    public Local(Integer id, Integer nit, String nombre, Integer ubicacion, String descripcion) {
         this.id = id;
         this.nit = nit;
         this.nombre = nombre;
@@ -36,14 +35,14 @@ public class Local {
         this.id = id;
     }
 
-    public String getNit() {
+    public Integer getNit() {
         return nit;
     }
 
-    public void setNit(String nit) {
+    public void setNit(Integer nit) {
         try {
             this.Validacion.validarNit(nit);
-            this.nit=nit;
+            this.nit = nit;
         }catch (Exception error){
             System.out.println(error.getMessage());
         }

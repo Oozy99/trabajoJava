@@ -1,5 +1,6 @@
 package org.example.Validacion;
 
+import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
 public class LocalValidacion {
@@ -7,13 +8,13 @@ public class LocalValidacion {
 
     public LocalValidacion() {
     }
-    public Boolean validarNit( String nit ) throws  Exception {
+    public Boolean validarNit(Integer nit ) throws  Exception {
         String exprecionRegular = "\\d+";
 
-        if (!util.buscarCoincidencias(exprecionRegular,nit)){
-            throw new Exception("Porfavor digite datos validos");
-        } else if (nit.length()<10) {
-            throw new Exception("Digite el numero de caracteres permitidos");
+        if (!util.buscarCoincidencias(exprecionRegular, String.valueOf(nit))){
+            throw new Exception(Mensajes.NIT_INVALIDO.getMensaje());
+        } else if (nit.longValue()<10) {
+            throw new Exception(Mensajes.CARACTER_INVALIDO.getMensaje());
         }else{
             return true;
         }
@@ -23,7 +24,7 @@ public class LocalValidacion {
         if (nombre.length()<30){
            return true;
         }else {
-            throw new Exception("Digite el numero de caracteres permitidos");
+            throw new Exception(Mensajes.EMPRESA_IVALIDO.getMensaje());
         }
     }
             }

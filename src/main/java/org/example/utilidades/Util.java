@@ -10,7 +10,7 @@ public class Util {
       Matcher coincidencia = patron.matcher(cadena);
       {
 
-         if (!coincidencia.matches()) {     //hay concidencia
+         if (coincidencia.matches()) {     //hay concidencia
             return true;
          } else {
             return false;
