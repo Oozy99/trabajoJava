@@ -3,6 +3,7 @@ package org.example.trabajo;
 import org.example.Validacion.ReservaValidacion;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Reserva {
     private Integer id;
@@ -11,9 +12,10 @@ public class Reserva {
     private Double costoTotal;
     private LocalDate fechaReserva;
     private Integer numeroDePersonas;
-    private ReservaValidacion validacion = new ReservaValidacion();
+    private ReservaValidacion validacion;
 
     public Reserva() {
+        this.validacion = new ReservaValidacion();
     }
 
     public Reserva(Integer id, Integer idUsuario, Integer idOferta, Double costoTotal, LocalDate fechaReserva, Integer numeroDePersonas) {
@@ -23,7 +25,11 @@ public class Reserva {
         this.costoTotal = costoTotal;
         this.fechaReserva = fechaReserva;
         this.numeroDePersonas = numeroDePersonas;
+        this.validacion = new ReservaValidacion();
     }
+
+
+
 
     public Integer getId() {
         return id;
@@ -61,25 +67,27 @@ public class Reserva {
         return fechaReserva;
     }
 
-    public void setFechaReserva(LocalDate fechaReserva) throws Exception {
+    public void setFechaReserva(String fechaReserva) {
         try {
-            validacion.validarFecha(String.valueOf(fechaReserva));
-            this.fechaReserva = fechaReserva;
+            validacion.validarFechaFormato(fechaReserva);
+            validacion.validarFechaFormato(fechaReserva);
+            this.fechaReserva = LocalDate.parse(fechaReserva, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         } catch (Exception error) {
-            throw new Exception(error.getMessage());
+            System.out.println(error.getMessage());
         }
     }
+
 
     public Integer getNumeroDePersonas() {
         return numeroDePersonas;
     }
 
-    public void setNumeroDePersonas(Integer numeroDePersonas) throws Exception {
+    public void setNumeroDePersonas(Integer numeroDePersonas)  {
         try {
             validacion.validarNumeroDePersonas(numeroDePersonas);
             this.numeroDePersonas = numeroDePersonas;
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
+        } catch (Exception error) {
+            System.out.println(error.getMessage());
         }
     }
 }

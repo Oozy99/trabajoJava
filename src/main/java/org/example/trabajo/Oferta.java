@@ -1,6 +1,5 @@
 package org.example.trabajo;
 
-import org.example.Validacion.UsuarioValidacion;
 import org.example.Validacion.ValidacionOferta;
 
 import java.time.LocalDate;
@@ -9,15 +8,15 @@ public class Oferta {
 
     private Integer id;
 
-    private  String titulo;
+    private String titulo;
 
-    private  String descripcion;
+    private String descripcion;
 
     private LocalDate fechaInicio;
 
-    private  LocalDate fechaFin;
+    private LocalDate fechaFin;
 
-    private  Double costoPersona;
+    private Double costoPersona;
 
     private Integer idLocal;
 
@@ -64,18 +63,13 @@ public class Oferta {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        {
-            try {
-
-                this.Validacion.validarFechas(fechaInicio,this.fechaFin);
-                this.fechaInicio = fechaInicio;
-            } catch (Exception error) {
-                System.out.println(error.getMessage());
-
-            }
+    public void setFechaInicio(LocalDate fechaInicio) throws Exception {
+        ValidacionOferta validacion = new ValidacionOferta();
+        if (validacion.validarFechas(fechaInicio, this.fechaFin)) {
+            this.fechaInicio = fechaInicio;
         }
     }
+
 
 
     public LocalDate getFechaFin() {
@@ -84,13 +78,15 @@ public class Oferta {
 
     public void setFechaFin(LocalDate fechaFin) {
         try {
-            this.Validacion.validarFechas(this.fechaInicio,fechaFin);
-            this.fechaFin=fechaFin;
+            this.Validacion.validarFechas(fechaFin);
+            this.fechaFin = fechaFin;
 
-        }catch (Exception error){
+        } catch (Exception error) {
             System.out.println(error.getMessage());
         }
     }
+
+
 
     public Double getCostoPersona() {
         return costoPersona;
@@ -106,5 +102,11 @@ public class Oferta {
 
     public void setIdLocal(Integer idLocal) {
         this.idLocal = idLocal;
+    }
+
+    public void setFechaInicio(String s) {
+    }
+
+    public void setFechaFin(String s) {
     }
 }

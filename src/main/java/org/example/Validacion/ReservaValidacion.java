@@ -1,31 +1,30 @@
 package org.example.Validacion;
 
 import org.example.trabajo.Reserva;
+import org.example.utilidades.Mensajes;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 public class ReservaValidacion {
-
-    protected Reserva ReservaValidacion = new Reserva();
-
-    public ReservaValidacion() {
-    }
-
-    public Boolean validarFecha(String fecha) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
+    public void validarFechaFormato(String fecha) throws Exception {
+        String[] partes = fecha.split("/");
+        if (partes.length != 3) {
+            throw new Exception(Mensajes.FORMATO_FECHA.getMensaje());
+        }
         try {
-            sdf.parse(fecha);
-            return true;
-        } catch (ParseException e) {
-            throw new Exception("La fecha ingresada no tiene el formato 'DD/MM/YYYY'");
+            Integer.parseInt(partes[0]);
+            Integer.parseInt(partes[1]);
+            Integer.parseInt(partes[2]);
+        } catch (NumberFormatException e) {
+            throw new Exception(Mensajes.FORMATO_FECHA.getMensaje());
         }
     }
 
-    public Boolean validarNumeroDePersonas(int numeroDePersonas) throws Exception {
+
+    public Boolean validarNumeroDePersonas(Integer numeroDePersonas) throws Exception {
         if (numeroDePersonas > 4) {
-            throw new Exception("El número de personas por reserva no puede ser mayor a 4");
+            throw new Exception(Mensajes.NUMERO_RESERVA.getMensaje());
         }
         return true;
     }

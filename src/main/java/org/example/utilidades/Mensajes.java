@@ -10,7 +10,15 @@ public enum Mensajes {
 
     CARACTER_INVALIDO("Digite el numero de caracteres permitidos"),
 
-    EMPRESA_IVALIDO("Digite el nombre de la empresa permitidos");
+    EMPRESA_IVALIDO("Digite el nombre de la empresa permitidos"),
+
+    FORMATO_FECHA("La fecha ingresada no tiene el formato 'DD/MM/YYYY'"),
+
+    NUMERO_RESERVA("El número de personas por reserva no puede ser mayor a 4"),
+    TITULO_VALIDACION("El titulo no puede sobrepasar los caracteres"),
+    FECHA_EVENTO("La fecha de inicio no puede ser mayor que la fecha de fin"),
+    FECHA_OFERTA("las fechas deben ser de DD/MM/YYYY"),
+    COSTO_VALIDACION("El costo por persona no es valido");
 
 
 
