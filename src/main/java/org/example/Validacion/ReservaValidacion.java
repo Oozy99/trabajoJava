@@ -23,9 +23,10 @@ public class ReservaValidacion {
 
 
     public Boolean validarNumeroDePersonas(Integer numeroDePersonas) throws Exception {
-        if (numeroDePersonas > 4) {
+        if ((numeroDePersonas >0) && (numeroDePersonas <4) ){
             throw new Exception(Mensajes.NUMERO_RESERVA.getMensaje());
+        }else
+        {throw new Exception("digite un numero valido");
         }
-        return true;
     }
 }

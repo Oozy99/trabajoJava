@@ -17,7 +17,7 @@ public class Main {
             Local local=new Local();
             Reserva reserva = new Reserva();
             Oferta oferta = new Oferta();
-
+/*
             System.out.print("*****Bienvenido******");
             System.out.println("1: Recogiendo datos Del Usuario:");
             System.out.print("Digita tus nombres y apellidos: ");
@@ -36,6 +36,7 @@ public class Main {
 
             teclado.nextLine();
 
+
             System.out.println("digte el nombre de la empresa:");
             local.setNombre(teclado.nextLine());
             System.out.println("............................................");
@@ -51,7 +52,7 @@ public class Main {
 
             System.out.println("Digite el titulo del evento:");
             oferta.setTitulo(teclado.nextLine());
-
+*/
             System.out.println("Digite la fecha de inicio del evento:");
             oferta.setFechaInicio(teclado.nextLine());
 

@@ -1,10 +1,8 @@
 package org.example.Validacion;
 
-import org.example.trabajo.Oferta;
 import org.example.utilidades.Mensajes;
 import org.example.utilidades.Util;
 
-import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -12,12 +10,13 @@ import java.time.format.DateTimeParseException;
 public class ValidacionOferta {
 
 
+    protected Util util = new Util();
 
     public ValidacionOferta() {
     }
 
     public Boolean ValidarTitulo(String titulo) throws Exception {
-        if (titulo.length() < 20) {
+        if (titulo.length() < 10) {
             return true;
         } else {
             throw new Exception(Mensajes.TITULO_VALIDACION.getMensaje());
@@ -25,30 +24,31 @@ public class ValidacionOferta {
     }
 
     public Boolean validarFechas(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
-        if (fechaInicio.isAfter(fechaFin)) {
-            throw new Exception(Mensajes.FECHA_EVENTO.getMensaje());
+        if (fechaFin.isBefore(fechaInicio)) {
+            throw new Exception("la fecha de finalizacion debe ser despues de la de inicio");
         } else {
             return true;
+
         }
     }
 
-
-
-    public Boolean validarFormatoFecha(String fecha) throws  Exception{
-        try {
-            LocalDate.parse(fecha, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+    public Boolean validarFormatoFecha(String fecha) throws Exception {
+        String regex = "(\\d{2})/(\\d{2})/(\\d{4})";
+        if (!util.buscarCoincidencias(regex, fecha)) {
+            throw new Exception("el formato debe ser en dd/MM/yyyy");
+        }else {
             return true;
-        }catch (DateTimeParseException e ){
-            throw new Exception(Mensajes.FECHA_OFERTA.getMensaje());
         }
     }
     public void costoPersona(double costoPorPersona) throws Exception {
-        if(costoPorPersona < 0) {
+        if(costoPorPersona > 0) {
             throw new Exception(Mensajes.COSTO_VALIDACION.getMensaje());
         }
     }
 
 
+    public void validarFechas(LocalDate fechaFin) {
+    }
 }
 
 

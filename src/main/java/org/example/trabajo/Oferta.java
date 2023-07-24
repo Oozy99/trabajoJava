@@ -3,6 +3,7 @@ package org.example.trabajo;
 import org.example.Validacion.ValidacionOferta;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Oferta {
 
@@ -63,28 +64,42 @@ public class Oferta {
         return fechaInicio;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) throws Exception {
-        ValidacionOferta validacion = new ValidacionOferta();
-        if (validacion.validarFechas(fechaInicio, this.fechaFin)) {
-            this.fechaInicio = fechaInicio;
-        }
-    }
+    public void setFechaInicio(String fechaInicio) throws Exception {
+       try {
 
+        this.Validacion.validarFormatoFecha(fechaInicio);
+           DateTimeFormatter formatter=DateTimeFormatter.ofPattern("dd/MM/yyyy");
+           LocalDate fechaConvertida = LocalDate.parse(fechaInicio,formatter);
+           this.fechaInicio=fechaConvertida;
+       }catch (Exception error){
+           System.out.println(error.getMessage());
+       }
+    }
 
 
     public LocalDate getFechaFin() {
         return fechaFin;
     }
 
-    public void setFechaFin(LocalDate fechaFin) {
-        try {
-            this.Validacion.validarFechas(fechaFin);
-            this.fechaFin = fechaFin;
+    public void setFechaFin(String fechaFin) throws Exception {
+        try{
+            this.Validacion.validarFormatoFecha(fechaFin);
 
-        } catch (Exception error) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+            LocalDate fechaConvertida = LocalDate.parse(fechaFin, formatter);
+
+            this.Validacion.validarFechas(this.fechaInicio,fechaConvertida); //valido diferenica
+
+            this.fechaFin =  fechaConvertida;
+
+
+
+        }catch (Exception error){
             System.out.println(error.getMessage());
         }
+
     }
+
 
 
 
@@ -104,9 +119,5 @@ public class Oferta {
         this.idLocal = idLocal;
     }
 
-    public void setFechaInicio(String s) {
-    }
 
-    public void setFechaFin(String s) {
-    }
 }
