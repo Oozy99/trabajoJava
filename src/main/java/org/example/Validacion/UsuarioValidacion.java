@@ -14,7 +14,7 @@ public class UsuarioValidacion {
 
     // métodos ordinarios para validar datos
     public Boolean validarNombre(String nombres) throws Exception {
-        String exprecionRegular = "^[a-zA-Z]+$";
+        String exprecionRegular = "^[a-zA-Z ]+$";
 
         if (!util.buscarCoincidencias(exprecionRegular, nombres)) {
             throw new Exception(Mensajes.NOBRE_SOLO_LETRAS.getMensaje());

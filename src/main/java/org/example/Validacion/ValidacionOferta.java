@@ -25,7 +25,7 @@ public class ValidacionOferta {
 
     public Boolean validarFechas(LocalDate fechaInicio, LocalDate fechaFin) throws Exception {
         if (fechaFin.isBefore(fechaInicio)) {
-            throw new Exception("la fecha de finalizacion debe ser despues de la de inicio");
+            throw new Exception(Mensajes.FECHA_EVENTO.getMensaje());
         } else {
             return true;
 
@@ -35,7 +35,7 @@ public class ValidacionOferta {
     public Boolean validarFormatoFecha(String fecha) throws Exception {
         String regex = "(\\d{2})/(\\d{2})/(\\d{4})";
         if (!util.buscarCoincidencias(regex, fecha)) {
-            throw new Exception("el formato debe ser en dd/MM/yyyy");
+            throw new Exception(Mensajes.FECHA_OFERTA.getMensaje());
         }else {
             return true;
         }
