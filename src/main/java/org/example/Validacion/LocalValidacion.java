@@ -13,7 +13,7 @@ public class LocalValidacion {
 
         if (!util.buscarCoincidencias(exprecionRegular, String.valueOf(nit))){
             throw new Exception(Mensajes.NIT_INVALIDO.getMensaje());
-        } else if (nit.longValue()<10) {
+        } else if (nit.longValue()>10) {
             throw new Exception(Mensajes.CARACTER_INVALIDO.getMensaje());
         }else{
             return true;

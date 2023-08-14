@@ -35,25 +35,27 @@ class UsuarioValidacionTest {
         Assertions.assertEquals(Mensajes.NOBRE_SOLO_LETRAS.getMensaje(), exepcion.getMessage());
 
     }
-@Test
-    public void correoValido (){
-        String correoValido= "jenifer@gmail.com"; //
-    Assertions.assertDoesNotThrow(()->usuarioValidacion.validarCorreo(correoValido));//no espera exepcion
+
+    @Test
+    public void correoValido() {
+        String correoValido = "jenifer@gmail.com"; //
+        Assertions.assertDoesNotThrow(() -> usuarioValidacion.validarCorreo(correoValido));//no espera exepcion
 
 
-}
-@Test
-    public void correoInvalido (){
-        String correoInvalidoPorArroba="jenifergmail.com";
-        String correInvalidoPorCom ="jenifergmail"; //
-       Assertions.assertThrows(Exception.class,()->usuarioValidacion.validarCorreo(correoInvalidoPorArroba));
-    Assertions.assertThrows(Exception.class,()->usuarioValidacion.validarCorreo(correInvalidoPorCom));//espera exepciones
-}
-
-
-@Test
-    public void  ubicacionVaida () {
-    Integer ubicacionValida = 3;
-    Assertions.assertDoesNotThrow(() -> usuarioValidacion.validarUbicacion(ubicacionValida));
-}
     }
+
+    @Test
+    public void correoInvalido() {
+        String correoInvalidoPorArroba = "jenifergmail.com";
+        String correInvalidoPorCom = "jenifergmail"; //
+        Assertions.assertThrows(Exception.class, () -> usuarioValidacion.validarCorreo(correoInvalidoPorArroba));
+        Assertions.assertThrows(Exception.class, () -> usuarioValidacion.validarCorreo(correInvalidoPorCom));//espera exepciones
+    }
+
+
+    @Test
+    public void ubicacionVaida() {
+        Integer ubicacionValida = 3;
+        Assertions.assertDoesNotThrow(() -> usuarioValidacion.validarUbicacion(ubicacionValida));
+    }
+}

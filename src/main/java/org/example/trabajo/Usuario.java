@@ -4,15 +4,15 @@ import org.example.Validacion.UsuarioValidacion;
 
 import java.util.concurrent.ExecutionException;
 
-public class Usuario {
+public abstract class Usuario {
 
     private Integer id;
 
-    private  String documento;
+    private String documento;
 
-    private  String nombres;
+    private String nombres;
 
-    private  String correo;
+    private String correo;
 
     private Integer ubicacion;
 
@@ -65,8 +65,8 @@ public class Usuario {
     public void setCorreo(String correo) {
         try {
             this.Validacion.validarCorreo(correo);
-            this.correo=correo;
-        }catch (Exception error){
+            this.correo = correo;
+        } catch (Exception error) {
             System.out.println(error.getMessage());
         }
     }
@@ -78,8 +78,8 @@ public class Usuario {
     public void setUbicacion(Integer ubicacion) {
         try {
             this.Validacion.validarUbicacion(ubicacion);// si las validaciones se cumplen
-            this.ubicacion=ubicacion;
-        }catch (Exception error){
+            this.ubicacion = ubicacion;
+        } catch (Exception error) {
             System.out.println(error.getMessage());
 
         }
@@ -96,5 +96,11 @@ public class Usuario {
                 ", Validacion=" + Validacion +
                 '}';
     }
+
+    protected Double getCostoAnual() {
+        return null;
+    }
+
+    public abstract Double calcularAnualidad();
 }
 

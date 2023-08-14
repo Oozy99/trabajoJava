@@ -16,7 +16,7 @@ public class ValidacionOferta {
     }
 
     public Boolean ValidarTitulo(String titulo) throws Exception {
-        if (titulo.length() < 10) {
+        if (titulo.length() <= 10) {
             return true;
         } else {
             throw new Exception(Mensajes.TITULO_VALIDACION.getMensaje());
@@ -41,7 +41,7 @@ public class ValidacionOferta {
         }
     }
     public void costoPersona(double costoPorPersona) throws Exception {
-        if(costoPorPersona > 0) {
+        if(costoPorPersona < 0) {
             throw new Exception(Mensajes.COSTO_VALIDACION.getMensaje());
         }
     }
