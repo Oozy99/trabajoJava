@@ -63,4 +63,5 @@ public class Main {
             System.out.println("Digite el costo por persona ");
             oferta.setCostoPersona(teclado.nextDouble());
         }
+
     }
